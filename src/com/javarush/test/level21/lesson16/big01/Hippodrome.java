@@ -20,9 +20,29 @@ public class Hippodrome
         this.horses = horses;
     }
 
-    public void move() {}
-    public void print() {}
-    public void run() {}
+    public void move()
+    {
+    }
+
+    public void print()
+    {
+    }
+
+    public void run()
+    {
+        try
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                move();
+                print();
+                Thread.sleep(200);
+            }
+        }
+        catch (InterruptedException e)
+        {
+        }
+    }
 
     public static void main(String[] args)
     {
