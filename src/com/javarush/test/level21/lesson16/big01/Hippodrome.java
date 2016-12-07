@@ -7,12 +7,12 @@ import java.util.ArrayList;
  */
 public class Hippodrome
 {
-    public ArrayList<Horse> horses;
+    private ArrayList<Horse> horses = new ArrayList<>();
     public static Hippodrome game;
 
     public ArrayList<Horse> getHorses()
     {
-        return horses;
+        return this.horses;
     }
 
     public void setHorses(ArrayList<Horse> horses)
@@ -22,10 +22,20 @@ public class Hippodrome
 
     public void move()
     {
+        for (Horse horse : getHorses())
+        {
+            horse.move();
+        }
     }
 
     public void print()
     {
+        for (Horse horse : getHorses())
+        {
+            horse.print();
+        }
+        System.out.println();
+        System.out.println();
     }
 
     public void run()
@@ -44,6 +54,25 @@ public class Hippodrome
         }
     }
 
+    public Horse getWinner()
+    {
+        Horse winner = null;
+        double maxDistance = getHorses().get(0).getDistance();
+        for (Horse horse : getHorses())
+        {
+            if (horse.getDistance() > maxDistance) maxDistance = horse.getDistance();
+        }
+        for (Horse horse : getHorses())
+        {
+            if (horse.getDistance() == maxDistance) winner = horse;
+        }
+        return winner;
+    }
+    public void printWinner()
+    {
+        System.out.println("Winner is " + getWinner().getName() + "!");
+    }
+
     public static void main(String[] args)
     {
         game = new Hippodrome();
@@ -53,5 +82,7 @@ public class Hippodrome
         horses1.add(new Horse("secondHorse", 3, 0));
         horses1.add(new Horse("thirdHorse", 3, 0));
         game.setHorses(horses1);
+        game.run();
+        game.printWinner();
     }
 }
