@@ -35,6 +35,6 @@ public class Solution
 
     public static void main(String[] args) throws TooShortStringException
     {
-        System.out.println(getPartOfString("JavaRush - лучший сервис обучения Java."));
+        System.out.println(getPartOfString("JavaRush - is fucking bullshit fo brains."));
     }
 }
