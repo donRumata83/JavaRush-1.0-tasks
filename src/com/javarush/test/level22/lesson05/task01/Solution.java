@@ -29,7 +29,7 @@ public class Solution
         return resultString;
     }
 
-    public static class TooShortStringException extends Throwable
+    public static class TooShortStringException extends Exception
     {
     }
 
