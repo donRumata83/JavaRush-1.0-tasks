@@ -15,8 +15,8 @@ public class Solution
 {
     public static String getPartOfString(String string) throws TooShortStringException
     {
-        if (string.equals(null)) throw new TooShortStringException();
-        if (string.equals("")) throw new TooShortStringException();
+        if (string == null) throw new TooShortStringException();
+
         String resultString;
         char[] massiv = string.toCharArray();
         ArrayList<Integer> indexOfSpaces = new ArrayList<>();
