@@ -27,30 +27,29 @@ public class Solution
     {
         Scanner consoleReader = new Scanner(System.in);
         String fileName = consoleReader.nextLine();
+        consoleReader.close();
         BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
         StringBuilder allwords = new StringBuilder();
         while (fileReader.ready())
         {
-            allwords.append(fileReader.readLine());
+            allwords.append(fileReader.readLine()).append(" ");
         }
-        String allWordsInString = allwords.toString();
-        allWordsInString.replaceAll("\\r\\n|\\n", " ");
+        fileReader.close();
+        String allWordsInString = (allwords.toString()).toLowerCase();
         String[] array = allWordsInString.split(" ");
-        StringBuilder sbi;
+
         StringBuilder sby;
         for (int i = 0; i < array.length; i++)
         {
-            sbi = new StringBuilder(array[i]);
-            for (int y = i; y < array.length; y++)
+            for (int y = i + 1; y < array.length; y++)
             {
                 sby = new StringBuilder(array[y]);
-                if (sbi.reverse().toString().equals(sby.toString()))
+                sby = sby.reverse();
+                if (array[i].equals(sby.toString()) && !array[i].equals("") && !sby.toString().equals(""))
                 {
-                    if (!sbi.toString().equals("") || !sby.toString().equals(""))
-                    {
-                        result.add(new Pair(sbi.toString(), sby.toString()));
-                        array[y] = "";
-                    }
+                    result.add(new Pair(array[i], array[y]));
+                    array[y] = "";
+                    array[i] = "";
                 }
             }
         }
