@@ -1,7 +1,7 @@
 package com.javarush.test.level22.lesson09.task01;
 
 import java.io.*;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
