@@ -31,7 +31,20 @@ public class Field
         this.matrix = matrix;
     }
 
-    public void print() {}
+    public void print()
+    {
+        for (int i = 0; i < getWidth(); i++)
+        {
+            for (int j = 0; j < getHeight(); j++)
+            {
+                if (matrix[j][i] == 0) System.out.print(".");
+                else System.out.println("X");
+
+            }
+            System.out.println();
+        }
+
+    }
 
     public void removeFullLines() {}
 
