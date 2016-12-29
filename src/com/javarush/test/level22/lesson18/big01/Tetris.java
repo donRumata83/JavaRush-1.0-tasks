@@ -7,7 +7,7 @@ public class Tetris
 {
     public Field field;
     public Figure figure;
-    public Tetris game;
+    public static Tetris game;
 
     public Field getField()
     {
@@ -26,7 +26,8 @@ public class Tetris
 
     public static void main(String[] args)
     {
-
+        game = new Tetris();
+        game.run();
 
     }
 }
