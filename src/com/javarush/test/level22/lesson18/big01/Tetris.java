@@ -28,6 +28,10 @@ public class Tetris
     {
         game = new Tetris();
         game.run();
+        Field field = new Field(20,10);
+        field.setValue(1,0,1);
+        field.setValue(1,1,1);
+        field.print();
 
     }
 }

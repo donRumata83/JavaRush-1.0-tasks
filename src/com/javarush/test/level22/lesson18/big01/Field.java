@@ -24,32 +24,30 @@ public class Field
         return matrix;
     }
 
-    public Field(int width, int height, int[][] matrix)
+    public Field(int width, int height)
     {
         this.width = width;
         this.height = height;
-        this.matrix = matrix;
+        this.matrix = new int[height][width];
     }
 
     public void print()
     {
-        for (int i = 0; i < getWidth(); i++)
-        {
-            for (int j = 0; j < getHeight(); j++)
-            {
-                if (matrix[j][i] == 0) System.out.print(".");
-                else System.out.println("X");
+        for (int col = 0; col < getWidth(); col++) {
+            for (int row = 0; row < getHeight(); row++) {
+                if (getValue(row, col) == 0){
+                    System.out.print(".");
 
+                }  else System.out.print("X");
             }
             System.out.println();
         }
-
     }
 
     public void removeFullLines() {}
 
-    public Integer getValue(int x, int y) {return null;}
+    public Integer getValue(int row, int col) {return matrix[col][row];}
 
-    public void setValue(int x, int y, int value) {}
+    public void setValue(int row, int col, int value) {matrix[col][row] = value;}
 
 }
