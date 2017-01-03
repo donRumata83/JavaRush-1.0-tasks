@@ -28,9 +28,10 @@ public class Tetris
     {
         game = new Tetris();
         game.run();
-        Field field = new Field(20,10);
-        field.setValue(1,0,1);
-        field.setValue(1,1,1);
+        Field field = new Field(6,2);
+        field.setValue(0, 0, 1); // высота 0, ширина 0 = 1
+        field.setValue(1,0,1); // высота 1, ширина 0 = 1
+        field.setValue(0, 1, 1);// высота 0, ширина 1 = 1
         field.print();
 
     }
