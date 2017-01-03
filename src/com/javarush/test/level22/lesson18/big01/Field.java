@@ -33,8 +33,8 @@ public class Field
 
     public void print()
     {
-        for (int col = 0; col < getWidth(); col++) {
-            for (int row = 0; row < getHeight(); row++) {
+        for (int row = 0; row < getHeight(); row++) {
+            for (int col = 0; col < getWidth(); col++) {
                 if (getValue(row, col) == 0){
                     System.out.print(".");
 
@@ -46,8 +46,8 @@ public class Field
 
     public void removeFullLines() {}
 
-    public Integer getValue(int row, int col) {return matrix[col][row];}
+    public Integer getValue(int row, int col) {return matrix[row][col];}
 
-    public void setValue(int row, int col, int value) {matrix[col][row] = value;}
+    public void setValue(int row, int col, int value) {matrix[row][col] = value;}
 
 }
