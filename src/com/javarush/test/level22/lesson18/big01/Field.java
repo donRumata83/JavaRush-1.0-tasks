@@ -5,9 +5,16 @@ package com.javarush.test.level22.lesson18.big01;
  */
 public class Field
 {
-    public int width;
-    public int height;
-    public int[][] matrix;
+    private int width;
+    private int height;
+    private int[][] matrix;
+
+    public Field(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+        this.matrix = new int[height][width];
+    }
 
     public int getWidth()
     {
@@ -24,30 +31,36 @@ public class Field
         return matrix;
     }
 
-    public Field(int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-        this.matrix = new int[height][width];
-    }
-
     public void print()
     {
-        for (int row = 0; row < getHeight(); row++) {
-            for (int col = 0; col < getWidth(); col++) {
-                if (getValue(row, col) == 0){
-                    System.out.print(".");
-
-                }  else System.out.print("X");
+        for (int i = 0; i < getHeight(); i++)
+        {
+            for (int j = 0; j < getWidth(); j++)
+            {
+                if (getValue(j, i) == 0) System.out.print(".");
+                else System.out.print("X");
             }
             System.out.println();
         }
     }
 
-    public void removeFullLines() {}
+    public void removeFullLines()
+    {
+    }
 
-    public Integer getValue(int row, int col) {return matrix[row][col];}
+    public Integer getValue(int x, int y)
+    {
+        if (x < 0 || y < 0 || y > getHeight() - 1 || x > getWidth() - 1)
+        {
+            return -1;
+        } else
+            return matrix[y][x];
+    }
 
-    public void setValue(int row, int col, int value) {matrix[row][col] = value;}
-
+    public void setValue(int x, int y, int value)
+    {
+        if (x < 0 || y < 0 || y > getHeight() - 1 || x > getWidth() - 1)
+        {
+        } else matrix[y][x] = value;
+    }
 }
