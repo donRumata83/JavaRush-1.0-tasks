@@ -5,7 +5,7 @@ package com.javarush.test.level23.lesson06.task02;
 Запретите наследоваться от Constants.
 */
 public class Solution {
-    public final class Constants
+    public static final class Constants
     {
         public static final String snae = "Server is not accessible for now.";
         public static final String uue = "User is not authorized.";
