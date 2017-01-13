@@ -112,6 +112,7 @@ public class Room
         //Создаем массив, куда будем "рисовать" текущее состояние игры
         int[][] matrix = new int[height][width];
 
+
         //Рисуем все кусочки змеи
         ArrayList<SnakeSection> sections = new ArrayList<SnakeSection>(snake.getSections());
         for (SnakeSection snakeSection : sections)
