@@ -10,7 +10,7 @@ public class Snake
     //Направление движения змеи
     private SnakeDirection direction;
     //Состояние - жива змея или нет.
-    private boolean isAlive = true;
+    private boolean isAlive;
     //Список кусочков змеи.
     private ArrayList<SnakeSection> sections = new ArrayList<SnakeSection>();
 
@@ -75,41 +75,51 @@ public class Snake
      */
     private void move(int dx, int dy)
     {
-        SnakeSection head = new SnakeSection(sections.get(0).getX() + dx, sections.get(0).getY() + dy);//Создаем новую голову - новый "кусочек змеи".
-        checkBorders(head);
-        if (!isAlive) return; //Проверяем - не вылезла ли голова за границу комнаты
-        checkBody(head);
-        if (!isAlive) return; //Проверяем - не пересекает ли змея  саму себя
-        if (isAlive)
-        {//Проверяем - не съела ли змея мышь.
-            if (head.getX() == Room.game.getMouse().getX() && head.getY() == Room.game.getMouse().getY())
-            {
-                Room.game.eatMouse();
-                sections.add(0, new SnakeSection(dx, dy));
+        //Создаем новую голову - новый "кусочек змеи".
+        SnakeSection head = sections.get(0);
+        head = new SnakeSection(head.getX() + dx, head.getY() + dy);
 
-            } else
-            {
-                sections.add(0, new SnakeSection(dx, dy));
-                sections.remove(sections.size() - 1);
-            }
+        //Проверяем - не вылезла ли голова за границу комнаты
+        checkBorders(head);
+        if (!isAlive) return;
+
+        //Проверяем - не пересекает ли змея  саму себя
+        checkBody(head);
+        if (!isAlive) return;
+
+        //Проверяем - не съела ли змея мышь.
+        Mouse mouse = Room.game.getMouse();
+        if (head.getX() == mouse.getX() && head.getY() == mouse.getY()) //съела
+        {
+            sections.add(0, head);                  //Добавили новую голову
+            Room.game.eatMouse();                   //Хвот не удаляем, но создаем новую мышь.
         }
-        //Двигаем змею.
+        else //просто движется
+        {
+            sections.add(0, head);                  //добавили новую голову
+            sections.remove(sections.size() - 1);   //удалили последний элемент с хвоста
+        }
     }
 
     /**
-     * Метод проверяет - находится ли новая голова в пределах комнаты
+     *  Метод проверяет - находится ли новая голова в пределах комнаты
      */
     private void checkBorders(SnakeSection head)
     {
-        if (head.getX() < 0 || head.getX() > Room.game.getHeight() || head.getY() < 0 || head.getY() > Room.game.getWidth())
+        if ((head.getX() < 0 || head.getX() >= Room.game.getWidth()) || head.getY() < 0 || head.getY() >= Room.game.getHeight())
+        {
             isAlive = false;
+        }
     }
 
     /**
-     * Метод проверяет - не совпадает ли голова с каким-нибудь участком тела змеи.
+     *  Метод проверяет - не совпадает ли голова с каким-нибудь участком тела змеи.
      */
     private void checkBody(SnakeSection head)
     {
-        if (sections.contains(head)) isAlive = false;
+        if (sections.contains(head))
+        {
+            isAlive = false;
+        }
     }
 }
