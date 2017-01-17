@@ -12,9 +12,6 @@ import java.util.EventListener;
 */
 public class Solution {
     public static class A implements Serializable {
-        protected A clone() throws CloneNotSupportedException {
-            return (A) super.clone();
-        }
     }
 
     public static class B implements Remote {
