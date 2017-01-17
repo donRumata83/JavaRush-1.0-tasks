@@ -8,11 +8,13 @@ public class Tetris
     private Field field;                //Поле с клетками
     private Figure figure;              //Фигурка
     private boolean isGameOver;         //Игра Окончена?
+
     public Tetris(int width, int height)
     {
         field = new Field(width, height);
         figure = null;
     }
+
     /**
      * Геттер переменной field.
      */
@@ -20,6 +22,7 @@ public class Tetris
     {
         return field;
     }
+
     /**
      * Геттер переменной figure.
      */
@@ -27,9 +30,10 @@ public class Tetris
     {
         return figure;
     }
+
     /**
-     *  Основной цикл программы.
-     *  Тут происходят все важные действия
+     * Основной цикл программы.
+     * Тут происходят все важные действия
      */
     public void run() throws Exception
     {
@@ -54,13 +58,13 @@ public class Tetris
                 if (event.getKeyCode() == KeyEvent.VK_LEFT)
                     figure.left();
                     //Если "стрелка вправо" - сдвинуть фигурку вправо
-                else if (event.getKeyCode() ==  KeyEvent.VK_RIGHT)
+                else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
                     figure.right();
                     //Если  код клавиши равен 12 ("цифра 5 на доп. клавиатуре") - повернуть фигурку
-                else if (event.getKeyCode() ==  12)
+                else if (event.getKeyCode() == 12)
                     figure.rotate();
                     //Если "пробел" - фигурка падает вниз на максимум
-                else if (event.getKeyCode() ==  KeyEvent.VK_SPACE)
+                else if (event.getKeyCode() == KeyEvent.VK_SPACE)
                     figure.downMaximum();
             }
             step();             //делаем очередной шаг
@@ -70,19 +74,27 @@ public class Tetris
         //Выводим сообщение "Game Over"
         System.out.println("Game Over");
     }
+
     /**
      * Один шаг игры
      */
     public void step()
     {
-        //опускам фигурку вниз
-        //если разместить фигурку на текущем месте невозможно:
-        //поднимаем обратно
+        figure.down();//опускам фигурку вниз
+        if (!figure.isCurrentPositionAvailable())
+        { //если разместить фигурку на текущем месте невозможно:
+            figure.up(); //поднимаем обратно
+            figure.landed();
+            field.removeFullLines();
+            setFigure(FigureFactory.createRandomFigure(0,5));
+        }
+
         //приземляем
         //если фигурка приземлилась на самом верху - игра окончена
         //удаляем заполненные линии
         //создаем новую фигурку
     }
+
     /**
      * Сеттер для figure
      */
@@ -90,6 +102,7 @@ public class Tetris
     {
         this.figure = figure;
     }
+
     /**
      * Сеттер для field
      */
@@ -97,7 +110,9 @@ public class Tetris
     {
         this.field = field;
     }
+
     public static Tetris game;
+
     public static void main(String[] args) throws Exception
     {
         game = new Tetris(10, 20);
