@@ -57,8 +57,8 @@ public class Dog implements Pet {
             {
                 Date today = new Date();
                 SimpleDateFormat format = formatter;
-
                 StringBuilder stringBuilder = new StringBuilder(getName() + " лает г");
+
                 if (i <= 0) return getName() + " спит.";
                 else
                 {
