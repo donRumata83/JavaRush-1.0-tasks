@@ -66,7 +66,12 @@ public class Util
             @Override
             public String toString()
             {
-                return getTM() + "{id=" + getId() + ", length=" + getLength() + ", size=" + getSize() + " , price=" + getPrice() + "}";
+                return getClass().getSimpleName() + "{" +
+                        "id=" + id +
+                        ", length=" + length +
+                        ", size=" + size +
+                        ", price=" + price +
+                        '}';
             }
         }
 
