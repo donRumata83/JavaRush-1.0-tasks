@@ -14,15 +14,18 @@ import java.util.*;
 Fake Apple Inc.   AAPL | 17-11-2025 open 125,64 and last 123,43
 Fake Oracle Corporation   ORCL | 21-08-1989 closed 0,15
 */
-public class Solution {
-    public static void main(String[] args) {
+public class Solution
+{
+    public static void main(String[] args)
+    {
         List<Stock> stocks = getStocks();
         sort(stocks);
         Date actualDate = new Date();
         printStocks(stocks, actualDate);
     }
 
-    public static void printStocks(List<Stock> stocks, Date actualDate) {
+    public static void printStocks(List<Stock> stocks, Date actualDate)
+    {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         double[] filelimits = {0d, actualDate.getTime()};
@@ -33,7 +36,8 @@ public class Solution {
         MessageFormat pattform = new MessageFormat("{0}   {1} | {5} {6}");
         pattform.setFormats(testFormats);
 
-        for (Stock stock : stocks) {
+        for (Stock stock : stocks)
+        {
             String name = ((String) stock.get("name"));
             String symbol = (String) stock.get("symbol");
             double open = !stock.containsKey("open") ? 0 : ((double) stock.get("open"));
@@ -45,41 +49,41 @@ public class Solution {
         }
     }
 
-    public static void sort(List<Stock> list) {
-        Collections.sort(list, new Comparator<Stock>() {
-            public int compare(Stock stock1, Stock stock2) {
+    public static void sort(List<Stock> list)
+    {
+        Collections.sort(list, new Comparator<Stock>()
+        {
+            public int compare(Stock stock1, Stock stock2)
+            {
                 int result;
 
                 result = stock1.get("name").toString().compareTo(stock2.get("name").toString());
-                if (result  != 0) return result;
+                if (result != 0) return result;
                 else
                 {
-                    try {
-                        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                        Date stock1Date = format.parse(stock1.get("date").toString());
-                        Date stock2Date = format.parse(stock2.get("date").toString());
-                        result = stock1Date.compareTo(stock2Date);
-                        if (result != 0) return result;
-                        else
-                        {
-                            double stock1Change = Double.parseDouble(stock1.get("last").toString()) -
-                                    Double.parseDouble(stock1.get("open").toString());
-                            double stock2Change = Double.parseDouble(stock2.get("last").toString()) -
-                                    Double.parseDouble(stock2.get("open").toString());
-                            if (stock1Change - stock2Change > 0) result = 1;
-                            if (stock1Change - stock2Change < 0) result = -1;
-                            return result;
-                        }
-                    } catch (ParseException e) {}
-
+                    Date stock1Date = (Date) stock1.get("date");
+                    Date stock2Date = (Date) stock2.get("date");
+                    result = stock1Date.compareTo(stock2Date);
+                    if (result != 0) return result;
+                    else
+                    {
+                        double stock1Change = Double.parseDouble(stock1.get("last").toString()) -
+                                Double.parseDouble(stock1.get("open").toString());
+                        double stock2Change = Double.parseDouble(stock2.get("last").toString()) -
+                                Double.parseDouble(stock2.get("open").toString());
+                        if (stock1Change - stock2Change > 0) result = 1;
+                        if (stock1Change - stock2Change < 0) result = -1;
+                        return result;
+                    }
                 }
-
             }
         });
     }
 
-    public static class Stock extends HashMap {
-        public Stock(String name, String symbol, double open, double last) {
+    public static class Stock extends HashMap
+    {
+        public Stock(String name, String symbol, double open, double last)
+        {
             put("name", name);
             put("symbol", symbol);
             put("open", open);
@@ -87,7 +91,8 @@ public class Solution {
             put("date", getRandomDate(2020));
         }
 
-        public Stock(String name, String symbol, double change, Date date) {
+        public Stock(String name, String symbol, double change, Date date)
+        {
             put("name", name);
             put("symbol", symbol);
             put("date", date);
@@ -95,7 +100,8 @@ public class Solution {
         }
     }
 
-    public static List<Stock> getStocks() {
+    public static List<Stock> getStocks()
+    {
         List<Stock> stocks = new ArrayList();
 
         stocks.add(new Stock("Fake Apple Inc.", "AAPL", 125.64, 123.43));
@@ -116,11 +122,13 @@ public class Solution {
         return stocks;
     }
 
-    public static Date getRandomDate() {
+    public static Date getRandomDate()
+    {
         return getRandomDate(1970);
     }
 
-    public static Date getRandomDate(int startYear) {
+    public static Date getRandomDate(int startYear)
+    {
         int year = startYear + (int) (Math.random() * 30);
         int month = (int) (Math.random() * 12);
         int day = (int) (Math.random() * 28);
