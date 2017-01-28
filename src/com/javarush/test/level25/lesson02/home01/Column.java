@@ -50,20 +50,23 @@ public enum Column implements Columnable{
      */
     public static List<Column> getVisibleColumns() {
         List<Column> result = new LinkedList<>();
-
+        for (int i = 0; i < realOrder.length; i++)
+        {
+            if (realOrder[i] != -1) result.add(Column.values()[realOrder[i]]);
+        }
         return result;
     }
 
     @Override
     public String getColumnName()
     {
-        return null;
+        return columnName;
     }
 
     @Override
     public boolean isShown()
     {
-        return false;
+        return realOrder[this.ordinal()] != -1;
     }
 
     @Override
