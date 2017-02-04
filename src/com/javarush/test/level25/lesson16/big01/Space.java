@@ -13,6 +13,7 @@ public class Space
     public ArrayList<Ufo> ufos;
     public ArrayList<Rocket> rockets;
     public ArrayList<Bomb> bombs;
+    public static Space game;
 
     public Space(int width, int height)
     {

@@ -25,7 +25,7 @@ public class Bomb extends BaseObject
 
     public Bomb(double x, double y, double radius)
     {
-        super(x, y, radius);
+        super(x, y, 1);
     }
 
     @Override
@@ -55,12 +55,12 @@ public class Bomb extends BaseObject
     @Override
     public void move()
     {
-        super.move();
+        this.setY(this.getY() +1);
     }
 
     @Override
     public void draw(Canvas canvas)
     {
-        super.draw(canvas);
+        canvas.setPoint(x,y,'B');
     }
 }
