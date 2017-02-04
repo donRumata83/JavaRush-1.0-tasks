@@ -1,68 +1,31 @@
 package com.javarush.test.level25.lesson16.big01;
 
-import com.javarush.test.level24.lesson14.big01.*;
-
 /**
- * Created by Rumata on 03.02.2017.
+ * Класс для объектов-ракета
  */
-public class Rocket extends BaseObject
+public class Rocket  extends BaseObject
 {
-    public Rocket(double x, double y, double radius)
+
+    public Rocket(double x, double y)
     {
-        super(x, y, radius);
+        super(x, y, 1);
     }
 
-    @Override
-    public double getX()
-    {
-        return super.getX();
-    }
-
-    @Override
-    public double getY()
-    {
-        return super.getY();
-    }
-
-    @Override
-    public double getRadius()
-    {
-        return super.getRadius();
-    }
-
-    @Override
-    public boolean isAlive()
-    {
-        return super.isAlive();
-    }
-
-    @Override
-    public void move()
-    {
-        super.move();
-    }
-
+    /**
+     * Метод рисует свой объект на "канвасе".
+     */
     @Override
     public void draw(Canvas canvas)
     {
-        super.draw(canvas);
+        canvas.setPoint(x,y,'R');
     }
 
+    /**
+     * Двигаем себя вверх на один ход.
+     */
     @Override
-    public void setX(double x)
+    public void move()
     {
-        super.setX(x);
-    }
-
-    @Override
-    public void setY(double y)
-    {
-        super.setY(y);
-    }
-
-    @Override
-    public void setRadius(double radius)
-    {
-        super.setRadius(radius);
+        y--;
     }
 }
