@@ -23,7 +23,7 @@ public class Bomb extends BaseObject
         super.setRadius(radius);
     }
 
-    public Bomb(double x, double y, double radius)
+    public Bomb(double x, double y)
     {
         super(x, y, 1);
     }
