@@ -1,71 +1,71 @@
 package com.javarush.test.level25.lesson16.big01;
 
 /**
- * Created by Rumata on 03.02.2017.
+ * Класс для космического корабля
  */
 public class SpaceShip extends BaseObject
 {
+    //картинка корабля для отрисовки
+    private static int[][] matrix = {
+            {0, 0, 0, 0, 0},
+            {0, 0, 1, 0, 0},
+            {0, 0, 1, 0, 0},
+            {1, 0, 1, 0, 1},
+            {1, 1, 1, 1, 1},
+    };
+
+    //вектор движения (-1 влево,+1 вправо)
     private double dx = 0;
-    public SpaceShip(double x, double y)
+
+    public SpaceShip(int x, int y)
     {
         super(x, y, 3);
-
     }
 
-    @Override
-    public double getX()
+    /**
+     * Устанавливаем вектор движения влево
+     */
+    public void moveLeft()
     {
-        return super.getX();
+        dx = -1;
     }
 
-    @Override
-    public double getY()
+    /**
+     * Устанавливаем вектор движения вправо
+     */
+    public void moveRight()
     {
-        return super.getY();
+        dx = 1;
     }
 
-    @Override
-    public double getRadius()
-    {
-        return super.getRadius();
-    }
-
-    @Override
-    public boolean isAlive()
-    {
-        return super.isAlive();
-    }
-
-    @Override
-    public void move()
-    {
-        super.move();
-    }
-
+    /**
+     * Метод рисует свой объект на "канвасе".
+     */
     @Override
     public void draw(Canvas canvas)
     {
-        super.draw(canvas);
+        canvas.drawMatrix(x - radius + 1, y, matrix, 'M');
     }
 
+    /**
+     * Двигаем себя на один ход.
+     * Проверяем столкновение с границами.
+     */
     @Override
-    public void setX(double x)
+    public void move()
     {
-        super.setX(x);
+        x = x + dx;
+
+        checkBorders(radius, Space.game.getWidth() - radius + 1, 1, Space.game.getHeight() + 1);
     }
 
-    @Override
-    public void setY(double y)
+    /**
+     * Стреляем.
+     * Создаем две ракеты: слева и справа от корабля.
+     */
+    public void fire()
     {
-        super.setY(y);
+        Space.game.getRockets().add(new Rocket(x - 2, y));
+        Space.game.getRockets().add(new Rocket(x + 2, y));
     }
-
-    @Override
-    public void setRadius(double radius)
-    {
-        super.setRadius(radius);
-    }
-
-    public void moveLeft() {dx = -1;}
-    public void moveRight() {dx = 1;}
 }
