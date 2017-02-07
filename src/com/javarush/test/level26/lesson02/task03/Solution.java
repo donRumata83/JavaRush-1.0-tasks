@@ -13,13 +13,16 @@ import java.util.Comparator;
 Все переданные компараторы сортируют дженерик тип Т
 В конструктор передается как минимум один компаратор
 */
-public class Solution {
+public class Solution
+{
     public static class CustomizedComparator<T> implements Comparator<T>
     {
         private ArrayList<Comparator<T>> comparators;
+
         public CustomizedComparator(Comparator<T>... comparator)
         {
-            for (Comparator<T> com: comparator)
+            comparators = new ArrayList<>();
+            for (Comparator<T> com : comparator)
             {
                 comparators.add(com);
             }
@@ -34,7 +37,7 @@ public class Solution {
                 if (comparators.get(i).compare(o1, o2) == 0) i++;
                 else return comparators.get(i).compare(o1, o2);
             }
-           return result;
+            return result;
         }
     }
 
