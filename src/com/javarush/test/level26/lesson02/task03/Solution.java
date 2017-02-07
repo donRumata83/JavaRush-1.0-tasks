@@ -14,7 +14,7 @@ import java.util.Comparator;
 В конструктор передается как минимум один компаратор
 */
 public class Solution {
-    public static class CustomizedComparator implements Comparator<T>
+    public static class CustomizedComparator<T> implements Comparator<T>
     {
         private ArrayList<Comparator<T>> comparators;
         public CustomizedComparator(Comparator<T>... comparator)
@@ -39,5 +39,5 @@ public class Solution {
         }
     }
 
-    public class T {}
+
 }
