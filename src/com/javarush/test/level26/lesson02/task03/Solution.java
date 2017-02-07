@@ -19,8 +19,7 @@ public class Solution {
         private ArrayList<Comparator<T>> comparators;
         public CustomizedComparator(Comparator<T>... comparator)
         {
-            for (Comparator<T> com: comparator
-                 )
+            for (Comparator<T> com: comparator)
             {
                 comparators.add(com);
             }
